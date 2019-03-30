@@ -11,9 +11,9 @@ int main(int argc, char** argv[]) {
 	// Inicialização
 
 	srand(time(0));
-	int x, y, v, a, g;
-	int jogadorx = rand()%(9);//Posição do jogador no eixo x
-	int jogadory = rand()%(19);//Posição do jogador no eixo y
+	int x, y, v, a, g, p;
+	int jogadory = rand()%(9);//Posição do jogador no eixo x
+	int jogadorx = rand()%(19);//Posição do jogador no eixo y
 	int obs = rand()%(25);
 	int obstaculox[obs];//Criar lista dos obstáculos x 
 	int obstaculoy[obs];//Criar lista dos obstáculos y  
@@ -33,8 +33,11 @@ int main(int argc, char** argv[]) {
 		for (x = 0; x < 10; x++) { // FOR 3 - Responsável pela impressão do mapa
 			
 			for (y = 0; y < 20;y++) { // FOR 4 - Definição da malha do mapa
-				campo[x][y] = '0';
-				
+				if (campo[x][y] == '1') {
+				}
+				else {
+					campo[x][y] = '0';
+				}
 				for (v = 0; v <= obs; v++) { // FOR 5 - Geração da indicação de obstáculos no mapa
 					if (obstaculox[v] == x && obstaculoy[v] == y) { // IF 1
 						campo[x][y] = '#';
@@ -54,39 +57,63 @@ int main(int argc, char** argv[]) {
 			char dir;
 			int n;
 			printf("Insira as coordenadas.\tEx: [N 2]\n\n");
-			scanf("[%c%d]", &dir, &n);
+			scanf(" [%c%d]", &dir, &n);
 			if (n > 0) {
 				switch (dir) {
 					case 'N':
-						jogadory -= n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadory--;
+						}
 						a++;
 						break;
 					case 'n':
-						jogadory -= n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadory--;
+						}
 						a++;
 						break;
 					case 'S':
-						jogadory += n;
+					for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadory++;
+						}
 						a++;
 						break;
 					case 's':
-						jogadory += n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadory++;
+						}
 						a++;
 						break;
 					case 'L':
-						jogadorx += n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadorx++;
+						}
 						a++;
 						break;
 					case 'l':
-						jogadorx += n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadorx++;
+						}
 						a++;
 						break;
 					case 'O':
-						jogadorx -= n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadorx--;
+						}
 						a++;
 						break;
 					case 'o':
-						jogadorx -= n;
+						for (p = 0; p < n; p++) {
+							campo[jogadory][jogadorx] = '1';
+							jogadorx--;
+						}
 						a++;
 						break;
 					default:
