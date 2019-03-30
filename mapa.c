@@ -41,7 +41,7 @@ int main(int argc, char** argv[]) {
 				for (v = 0; v <= obs; v++) { // FOR 5 - Geração da indicação de obstáculos no mapa
 					if (obstaculox[v] == x && obstaculoy[v] == y) { // IF 1
 						campo[x][y] = '#';
-					}
+					} 
 				}
 				if (jogadorx == y && jogadory == x) { // IF 2 - Indicação do jogador no mapa
 					campo[x][y] = 'x';
