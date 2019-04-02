@@ -9,7 +9,8 @@ int main(int argc, char** argv[]) {
 
 	// Inicialização
 	srand(time(0));
-	int x, y, p, game, parar, success;
+	int x, y, p, game, parar;
+	int success = 1;
 	int jogadory = rand()%(9); // Posição do jogador no eixo x
 	int jogadorx = rand()%(19); // Posição do jogador no eixo y
 	int obs = 50;
@@ -31,7 +32,11 @@ int main(int argc, char** argv[]) {
 		system("clear");
 
 		printf("Posicao do robo: %d %d\n\n",jogadorx, jogadory );
-		printf("%s\n", msg);
+		if (success == 1) {
+			printf("SUCCESS\n");
+		} else {
+			printf("FAILED\n");
+		}
 		for (x = 0; x < 10; x++) { // Impressão do mapa
 
 			for (y = 0; y < 20;y++) { // Definição da malha do mapa
@@ -57,7 +62,7 @@ int main(int argc, char** argv[]) {
 			printf("Insira apenas valores positivos!\n");
 			continue;
 		}
-		msg = "SUCCESS";
+		success = 1;
 		switch (direcao) {
 			case 'N':
 				for (p = 0; p < passos; p++) {
@@ -67,8 +72,8 @@ int main(int argc, char** argv[]) {
 						if (jogadory == obstaculox[x] && jogadorx == obstaculoy[x]) {
 							parar = 1;
 							campo[obstaculox[x]][obstaculoy[x]] = '#';
+							success = 0;
 							jogadory++;
-							msg = "FAILED";
 							break;
 						}
 					}
@@ -90,6 +95,7 @@ int main(int argc, char** argv[]) {
 							parar = 1;
 							campo[obstaculox[x]][obstaculoy[x]] = '#';
 							jogadory--;
+							success = 0;
 							break;
 						}
 					}
@@ -111,6 +117,7 @@ int main(int argc, char** argv[]) {
 							parar = 1;
 							campo[obstaculox[x]][obstaculoy[x]] = '#';
 							jogadorx--;
+							success = 0;
 							break;
 						}
 					}
@@ -132,6 +139,7 @@ int main(int argc, char** argv[]) {
 							parar = 1;
 							campo[obstaculox[x]][obstaculoy[x]] = '#';
 							jogadorx++;
+							success = 0;
 							break;
 						}
 					}
